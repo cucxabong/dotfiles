@@ -8,6 +8,9 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # repo path -> target path
 LINKS=(
   "tmux/tmux.conf:$HOME/.tmux.conf"
+  "wezterm/wezterm.lua:$HOME/.wezterm.lua"
+  "ccstatusline/settings.json:$HOME/.config/ccstatusline/settings.json"
+  "agents/AGENTS.md:$HOME/.agents/AGENTS.md"
 )
 
 link() {
