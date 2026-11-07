@@ -50,7 +50,7 @@
       {
         "id": "15",
         "type": "custom-command",
-        "commandPath": "/Users/quan.hoang/.claude/bin/cc-spend.sh",
+        "commandPath": "$HOME/.claude/bin/cc-spend.sh",
         "timeout": 2000,
         "color": "green"
       }
