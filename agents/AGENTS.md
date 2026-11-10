@@ -23,6 +23,9 @@ user-level file here, e.g. `~/.codex/AGENTS.md`.
 
 ## Working style
 
+Credit: the rules from here down are adapted from
+[kunchenguid/dotfiles](https://github.com/kunchenguid/dotfiles/blob/main/home/AGENTS.md).
+
 - Never manually modify `CHANGELOG.md` files or any file marked as
   auto-generated.
 - When making technical decisions, do not give much weight to development cost.
