@@ -27,6 +27,7 @@ stay on a branch that has every linked file.
 | `ccstatusline/settings.json` | `~/.config/ccstatusline/settings.json` |
 | `claude/bin/cc-spend.sh` | `~/.claude/bin/cc-spend.sh` |
 | `agents/AGENTS.md` | `~/.agents/AGENTS.md`, `~/.claude/CLAUDE.md` |
+| `herdr/config.toml` | `~/.config/herdr/config.toml` |
 
 To add a config, put it under a folder named after the tool and add a
 `"repo/path:$HOME/target"` line to `LINKS`.
@@ -40,6 +41,7 @@ To add a config, put it under a folder named after the tool and add a
 | `pbcopy`, `wl-copy` or `xclip` | tmux copy mode | Optional. With none installed, tmux copies through OSC 52, which needs a terminal that supports it, such as WezTerm. |
 | [WezTerm](https://wezterm.org) | `wezterm.lua` | The Option-key settings only apply on macOS. |
 | [Starship](https://starship.rs) | `starship.toml` | Add the init line for your shell yourself, e.g. `starship init fish \| source`. |
+| [herdr](https://herdr.dev) | `herdr/config.toml` | Keys follow `tmux.conf` (`ctrl+a` prefix, `\` and `-` splits, `q`/`Q` close). Apply edits with `herdr server reload-config`. |
 | [Claude Code](https://claude.com/claude-code) | `AGENTS.md`, statusline | |
 | Node.js (`npx`) | ccstatusline, `cc-spend.sh` | Both are fetched with `npx` on each run: [ccstatusline](https://github.com/sirmalloc/ccstatusline) and [ccusage](https://github.com/ryoppippi/ccusage). |
 | `jq` | `cc-spend.sh` | |

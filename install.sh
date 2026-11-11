@@ -14,6 +14,7 @@ LINKS=(
   "agents/AGENTS.md:$HOME/.claude/CLAUDE.md"
   "claude/bin/cc-spend.sh:$HOME/.claude/bin/cc-spend.sh"
   "starship/starship.toml:$HOME/.config/starship.toml"
+  "herdr/config.toml:$HOME/.config/herdr/config.toml"
 )
 
 link() {
