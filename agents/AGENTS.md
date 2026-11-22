@@ -35,6 +35,8 @@ Credit: the rules from here down are adapted from
   end-to-end path. Do not build wrappers, control planes, policy layers, custom
   verifiers or automation unless the direct path exposes a concrete blocker or a
   repeated need that justifies the added machinery.
+- Reuse or extend an existing mechanism (helper, field, pattern, guard, doc
+  row) before adding a new one. Add new only when nothing fits.
 
 ## Bugs and testing
 
@@ -48,6 +50,29 @@ Credit: the rules from here down are adapted from
 
 ## Subagents
 
+- Plan and delegate. Models are Claude Code names:
+  - Opus (main session): scouts, plans, writes briefs, coordinates, reviews.
+  - Sonnet subagent: coding and diff work (edits, generate, tests, local
+    commits).
+  - Haiku subagent: data collection only (web and doc search, read-only
+    inventories).
+- Briefs give exact paths, steps, checks and the rules in this file.
+- Subagents stop before anything outward-facing (push, PR, apply, Jira, Slack).
+  The main session reviews the result and asks the user.
+- A subagent that calls AWS gets only scoped creds, never the main session's.
+  The main session mints them with STS
+  [`GetScopedCredentials`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetScopedCredentials.html)
+  and passes `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` /
+  `AWS_SESSION_TOKEN`, naming the granted scope in the brief.
+  - `aws sts get-scoped-credentials --region <r> --policy <json>
+    --duration-seconds <s>`: regional endpoint only, recent CLI v2, caller
+    must hold temporary creds (SSO profiles work; IAM user: `GetSessionToken`
+    first). Unset stale `AWS_ACCESS_KEY_ID`/`_SECRET_`/`_SESSION_TOKEN` env
+    vars first; they override `AWS_PROFILE`.
+  - Policy (max 2048 chars) lists only the task's actions and resources,
+    read-only unless the brief needs writes. Result is the parent's perms
+    intersected with each scope layer (max 3 per session); identity is kept.
+  - Duration covers the task but can't outlast the parent session.
 - Before using dynamic workflows, ultracode or any harness feature that
   immediately spawns a large swarm of subagents, explain the tradeoffs and ask
   for explicit approval.
